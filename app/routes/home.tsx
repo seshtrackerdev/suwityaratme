@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { usePageViewTracking, useAnalytics } from "../hooks/useAnalytics";
+import { ContactModal } from "../components/ContactModal";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -35,6 +36,7 @@ function useScrollAnimation() {
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const { trackContactClick, trackDownload, trackNavigationClick } = useAnalytics();
   
   // Track page view
@@ -46,6 +48,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const openContactModal = () => {
+    setIsContactModalOpen(true);
+    trackContactClick('home_contact_modal_open');
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -245,7 +252,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               Full Résumé
             </motion.button>
             <motion.button 
-              onClick={() => { closeMobileMenu(); setTimeout(() => scrollToSection('contact'), 100); }} 
+              onClick={() => { closeMobileMenu(); setTimeout(() => openContactModal(), 100); }} 
               className="hover:opacity-70 py-2 text-left"
               variants={{
                 open: { opacity: 1, x: 0 },
@@ -351,7 +358,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 LinkedIn
               </motion.a>
               <motion.button 
-                onClick={() => scrollToSection('contact')} 
+                onClick={openContactModal} 
                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl border border-black px-5 py-3 text-sm font-semibold shadow-[0_3px_0_0_#000] active:translate-y-[3px] active:shadow-none"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -1046,6 +1053,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           </motion.a>
         </div>
       </motion.footer>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </div>
   );
 }

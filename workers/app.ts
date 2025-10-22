@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { createRequestHandler } from "react-router";
+import { EmailMessage } from 'cloudflare:email';
 import { 
   createAnalyticsEvent, 
   storeAnalyticsEvent,
@@ -166,7 +167,9 @@ app.post("/api/contact", async (c) => {
       timestamp: new Date().toISOString(),
       source: source,
       ip: c.req.header('CF-Connecting-IP') || 'unknown',
-      userAgent: c.req.header('User-Agent') || 'unknown'
+      userAgent: c.req.header('User-Agent') || 'unknown',
+      referrer: c.req.header('Referer') || 'Direct',
+      url: c.req.url || 'Not available'
     };
     
     // Send to queue
@@ -282,4 +285,398 @@ app.get("*", async (c) => {
   return response;
 });
 
-export default app;
+// Email Worker consumer for contact form
+export default {
+  async fetch(request: Request, env: any, ctx: ExecutionContext) {
+    // Handle HTTP requests
+    return app.fetch(request, env, ctx);
+  },
+  
+  async queue(batch: MessageBatch, env: any, ctx: ExecutionContext): Promise<void> {
+  console.log(`Processing ${batch.messages.length} contact form messages`);
+  
+  for (const message of batch.messages) {
+    try {
+      const contactData = message.body;
+      
+      // Create email content with proper headers
+      const plainTextContent = createEmailContent(contactData);
+      const htmlContent = createHtmlEmailContent(contactData);
+      
+      // Generate a unique message ID
+      const messageId = `<${crypto.randomUUID()}@suwityarat.me>`;
+      const boundary = `----=_Part_${crypto.randomUUID()}`;
+      
+      // Create multipart email with both plain text and HTML
+      const rawEmail = [
+        `From: noreply@suwityarat.me`,
+        `To: jobs@suwityarat.com`,
+        `Subject: 📧 New Contact Form Submission from ${contactData.name}`,
+        `Message-ID: ${messageId}`,
+        `Date: ${new Date().toUTCString()}`,
+        `MIME-Version: 1.0`,
+        `Content-Type: multipart/alternative; boundary="${boundary}"`,
+        ``,
+        `--${boundary}`,
+        `Content-Type: text/plain; charset=utf-8`,
+        `Content-Transfer-Encoding: 7bit`,
+        ``,
+        plainTextContent,
+        ``,
+        `--${boundary}`,
+        `Content-Type: text/html; charset=utf-8`,
+        `Content-Transfer-Encoding: 7bit`,
+        ``,
+        htmlContent,
+        ``,
+        `--${boundary}--`
+      ].join('\r\n');
+      
+      // Create EmailMessage
+      const emailMessage = new EmailMessage(
+        'noreply@suwityarat.me', // From address (must be your domain)
+        'jobs@suwityarat.com',   // To address
+        rawEmail
+      );
+      
+      // Send email using Email Routing
+      await env.SEND_EMAIL.send(emailMessage);
+      
+      console.log(`Email sent successfully for contact from ${contactData.name} (${contactData.email})`);
+      
+      // Acknowledge the message
+      message.ack();
+      
+    } catch (error) {
+      console.error(`Failed to send email for message ${message.id}:`, error);
+      
+      // Retry the message (will be retried according to queue settings)
+      message.retry();
+    }
+  }
+  }
+};
+
+function createEmailContent(contactData: any): string {
+  const timestamp = new Date(contactData.timestamp).toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+  
+  return `New Contact Form Submission
+
+From: ${contactData.name}
+Email: ${contactData.email}
+Subject: ${contactData.subject}
+Source: ${contactData.source === 'modal' ? 'Website Modal' : 'Contact Page'}
+Submitted: ${timestamp}
+IP: ${contactData.ip}
+
+Message:
+${contactData.message}
+
+---
+This message was sent via the contact form on suwityarat.me
+User Agent: ${contactData.userAgent}`;
+}
+
+function createHtmlEmailContent(contactData: any): string {
+  const timestamp = new Date(contactData.timestamp).toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+  
+  // Enhanced source detection
+  const sourceLabel = contactData.source === 'modal' ? 'Website Modal' : 'Contact Page';
+  const sourceColor = contactData.source === 'modal' ? '#0077B5' : '#000000';
+  
+  // Extract page information from referrer if available
+  const referrer = contactData.referrer || 'Direct';
+  const pageSource = referrer.includes('suwityarat.me') ? 
+    referrer.replace('https://suwityarat.me', '').replace('/', '') || 'Home' : 
+    'External';
+  
+  // Determine likely intent based on content
+  const messageText = contactData.message.toLowerCase();
+  let likelyIntent = 'General Inquiry';
+  if (messageText.includes('job') || messageText.includes('career') || messageText.includes('hire')) {
+    likelyIntent = 'Job Opportunity';
+  } else if (messageText.includes('website') || messageText.includes('web design') || messageText.includes('site')) {
+    likelyIntent = 'Web Development';
+  } else if (messageText.includes('itsm') || messageText.includes('teamdynamix') || messageText.includes('workflow')) {
+    likelyIntent = 'ITSM Consulting';
+  } else if (messageText.includes('consulting') || messageText.includes('help') || messageText.includes('support')) {
+    likelyIntent = 'Consulting';
+  }
+  
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Contact Form Submission</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #000000;
+      background-color: #F7F6F2;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      border: 2px solid #000000;
+      box-shadow: 0 6px 0 0 #000000;
+      overflow: hidden;
+    }
+    .header {
+      background: #000000;
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+    }
+    .header p {
+      margin: 8px 0 0 0;
+      opacity: 0.9;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .content {
+      padding: 24px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .info-item {
+      background: #F7F6F2;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #000000;
+    }
+    .info-item strong {
+      display: block;
+      color: #000000;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .info-item span {
+      color: #000000;
+      font-weight: 600;
+    }
+    .message-section {
+      background: #F7F6F2;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #000000;
+      margin-bottom: 20px;
+    }
+    .message-section h3 {
+      margin: 0 0 12px 0;
+      color: #000000;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .message-content {
+      background: white;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #000000;
+      white-space: pre-wrap;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000000;
+    }
+    .categorization {
+      background: #F7F6F2;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #000000;
+      margin-bottom: 20px;
+    }
+    .categorization h3 {
+      margin: 0 0 12px 0;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .category-item {
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #000000;
+    }
+    .category-item strong {
+      display: block;
+      font-size: 11px;
+      color: #666666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .category-item span {
+      font-weight: 600;
+      color: #000000;
+    }
+    .intent-badge {
+      display: inline-block;
+      background: #0077B5;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .meta-info {
+      background: #F7F6F2;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #000000;
+      font-size: 12px;
+      color: #666666;
+    }
+    .meta-info p {
+      margin: 4px 0;
+    }
+    .source-badge {
+      display: inline-block;
+      background: ${sourceColor};
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .footer {
+      background: #F7F6F2;
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #666666;
+      border-top: 1px solid #000000;
+    }
+    .footer a {
+      color: #0077B5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    @media (max-width: 600px) {
+      .info-grid, .category-grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        margin: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📧 New Contact Form Submission</h1>
+      <p>Someone reached out through your website</p>
+    </div>
+    
+    <div class="content">
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>Name</strong>
+          <span>${contactData.name}</span>
+        </div>
+        <div class="info-item">
+          <strong>Email</strong>
+          <span><a href="mailto:${contactData.email}" style="color: #0077B5; text-decoration: none; font-weight: 600;">${contactData.email}</a></span>
+        </div>
+        <div class="info-item">
+          <strong>Subject</strong>
+          <span>${contactData.subject}</span>
+        </div>
+        <div class="info-item">
+          <strong>Source</strong>
+          <span><span class="source-badge">${sourceLabel}</span></span>
+        </div>
+      </div>
+      
+      <div class="categorization">
+        <h3>📊 Categorization & Context</h3>
+        <div class="category-grid">
+          <div class="category-item">
+            <strong>Likely Intent</strong>
+            <span class="intent-badge">${likelyIntent}</span>
+          </div>
+          <div class="category-item">
+            <strong>Page Source</strong>
+            <span>${pageSource}</span>
+          </div>
+          <div class="category-item">
+            <strong>Referrer</strong>
+            <span>${referrer}</span>
+          </div>
+          <div class="category-item">
+            <strong>Submission Time</strong>
+            <span>${timestamp}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="message-section">
+        <h3>💬 Message</h3>
+        <div class="message-content">${contactData.message}</div>
+      </div>
+      
+      <div class="meta-info">
+        <p><strong>🌐 IP Address:</strong> ${contactData.ip}</p>
+        <p><strong>🖥️ User Agent:</strong> ${contactData.userAgent}</p>
+        <p><strong>📱 Device Type:</strong> ${contactData.userAgent.includes('Mobile') ? 'Mobile' : contactData.userAgent.includes('Tablet') ? 'Tablet' : 'Desktop'}</p>
+        <p><strong>🔗 Full URL:</strong> ${contactData.url || 'Not available'}</p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>This message was sent via the contact form on <a href="https://suwityarat.me">suwityarat.me</a></p>
+    </div>
+  </div>
+</body>
+</html>`;
+}

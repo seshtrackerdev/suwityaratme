@@ -105,16 +105,16 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-black/10">
-              <h2 className="text-2xl font-black tracking-tight">Get in Touch</h2>
+              <h2 className="text-2xl font-black tracking-tight text-black">Get in Touch</h2>
               <motion.button
                 onClick={handleClose}
                 disabled={isSubmitting}
-                className="p-2 rounded-xl border border-black/20 hover:bg-neutral-50 disabled:opacity-50"
+                className="p-2 rounded-xl border border-black/20 hover:bg-neutral-50 disabled:opacity-50 text-black"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </motion.button>
@@ -141,7 +141,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   {/* Name and Email Row */}
                   <div className="grid gap-4 md:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold mb-2">
+                      <label htmlFor="name" className="block text-sm font-semibold mb-2 text-black">
                         Name *
                       </label>
                       <input
@@ -152,12 +152,12 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         onChange={handleInputChange}
                         required
                         disabled={isSubmitting}
-                        className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed text-black placeholder-gray-500"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                      <label htmlFor="email" className="block text-sm font-semibold mb-2 text-black">
                         Email *
                       </label>
                       <input
@@ -168,7 +168,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         onChange={handleInputChange}
                         required
                         disabled={isSubmitting}
-                        className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed text-black placeholder-gray-500"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -176,7 +176,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                   {/* Subject */}
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-semibold mb-2">
+                    <label htmlFor="subject" className="block text-sm font-semibold mb-2 text-black">
                       Subject
                     </label>
                     <input
@@ -186,14 +186,14 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       value={formData.subject}
                       onChange={handleInputChange}
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed text-black placeholder-gray-500"
                       placeholder="What's this about?"
                     />
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold mb-2">
+                    <label htmlFor="message" className="block text-sm font-semibold mb-2 text-black">
                       Message *
                     </label>
                     <textarea
@@ -204,7 +204,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       required
                       disabled={isSubmitting}
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-black/20 focus:border-black focus:ring-2 focus:ring-black/20 disabled:opacity-50 disabled:cursor-not-allowed resize-none text-black placeholder-gray-500"
                       placeholder="Tell me about your project, question, or opportunity..."
                     />
                   </div>
@@ -231,7 +231,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.2 }}
                     >
-                      Cancel
+                      <span className="text-black">Cancel</span>
                     </motion.button>
                     <motion.button
                       type="submit"

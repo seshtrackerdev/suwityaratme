@@ -453,7 +453,7 @@ export default function Contact({ loaderData }: Route.ComponentProps) {
         >
           <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">Send a Message</h2>
           <p className="text-neutral-700 mb-6">
-            Ready to discuss your project? Fill out the form below and I'll get back to you within 24 hours.
+            Ready to discuss your project? Fill out the form below and I'll get back to you soon.
           </p>
           <motion.button
             onClick={openContactModal}
