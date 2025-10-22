@@ -1,0 +1,12 @@
+{
+  "name": "resume-pdf-generator",
+  "version": "1.0.0",
+  "description": "Generate PDF from your resume webpage",
+  "scripts": {
+    "generate-pdf": "node scripts/generate-resume-pdf.js",
+    "generate-pdf-prod": "node scripts/generate-resume-pdf-prod.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}
