@@ -3,7 +3,7 @@ import type { Route } from "./+types/resume-pdf";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Timothy Suwityarat — Resume" },
-    { name: "description", content: "Professional resume for Timothy Suwityarat, Solutions Engineer." },
+    { name: "description", content: "Professional resume for Timothy Suwityarat, Technical Support Specialist." },
     { name: "robots", content: "noindex, nofollow" },
   ];
 }
@@ -15,7 +15,7 @@ export default function ResumePDF() {
       <div className="header">
         <div className="name-title">
           <h1>Timothy Suwityarat</h1>
-          <p className="title">Solutions Engineer · ITSM · Workflow Automation</p>
+          <p className="title">Technical Support Specialist · Troubleshooting · Customer Support</p>
           <div className="contact">
             <span>jobs@suwityarat.com</span> • 
             <span>+1 (401) 218-7310</span> • 
@@ -28,7 +28,7 @@ export default function ResumePDF() {
       {/* Professional Summary */}
       <section className="summary">
         <h2>Professional Summary</h2>
-        <p>Dynamic Solutions Engineer with a proven track record at TeamDynamix and the Community College of Rhode Island—enhancing IT systems and user experiences through innovative solutions and clear communication. Expert in software troubleshooting and Microsoft 365; focused on automation, knowledge management, and client satisfaction.</p>
+        <p>Technical Support Specialist with proven experience at TeamDynamix and CCRI—helping customers resolve technical issues through clear communication and systematic problem-solving. Expert in troubleshooting, customer support, and Microsoft 365; focused on practical solutions and customer satisfaction.</p>
       </section>
 
       {/* Experience */}
@@ -44,11 +44,11 @@ export default function ResumePDF() {
             <span className="dates">Feb 2024 – Present</span>
           </div>
           <ul>
-            <li>Work closely with Account Executives, Customer Success Managers, and Sales Representatives to deliver tailored demonstrations across ITSM, PPM, and iPaaS solutions.</li>
-            <li>Participate in discovery calls to understand prospect needs, identify technical fit, and shape demo strategy based on their goals and pain points.</li>
-            <li>Build customized demo environments, workflows, and outlines that reflect real-world scenarios and demonstrate how TeamDynamix can solve prospect-specific challenges.</li>
-            <li>Provide deep product knowledge on the TeamDynamix platform, including intake design, ticketing, automation, and portfolio management.</li>
-            <li>Help refine and update shared demo environments, scripts, and walkthroughs used across the pre-sales team to ensure consistency and quality.</li>
+            <li>Provide technical support and troubleshooting assistance to customers using TeamDynamix ITSM, PPM, and iPaaS solutions.</li>
+            <li>Participate in discovery calls to understand customer technical needs and provide solutions based on their specific challenges.</li>
+            <li>Build and maintain demo environments and technical documentation to help customers understand platform capabilities.</li>
+            <li>Provide deep technical knowledge on TeamDynamix platform, including troubleshooting ticketing systems and automation.</li>
+            <li>Create and update technical support documentation and troubleshooting guides for customer success team.</li>
           </ul>
         </div>
 
@@ -61,11 +61,11 @@ export default function ResumePDF() {
             <span className="dates">2024 – Present</span>
           </div>
           <ul>
-            <li>Founded solo web development business serving Rhode Island businesses with custom website solutions and local SEO optimization.</li>
-            <li>Specialize in creating fast-loading, mobile-responsive websites with clean design and intuitive user experience.</li>
-            <li>Provide comprehensive services including single-page sites, multi-page websites, website makeovers, and landing pages for promotions.</li>
-            <li>Focus on client collaboration and direct communication, ensuring businesses maintain control over their content while I handle technical implementation.</li>
-            <li>Implement local SEO strategies and performance optimization to help businesses improve their online presence and search visibility.</li>
+            <li>Founded solo web development business serving Rhode Island businesses with custom website solutions and technical support.</li>
+            <li>Specialize in creating fast-loading, mobile-responsive websites with clean design and ongoing technical support.</li>
+            <li>Provide comprehensive services including single-page sites, multi-page websites, and technical troubleshooting for existing sites.</li>
+            <li>Focus on client collaboration and direct communication, providing technical support and maintenance for website functionality.</li>
+            <li>Implement technical solutions and performance optimization to help businesses maintain their online presence.</li>
           </ul>
         </div>
 
@@ -78,12 +78,12 @@ export default function ResumePDF() {
             <span className="dates">Aug 2021 – Feb 2024</span>
           </div>
           <ul>
-            <li>Lead Admin for TeamDynamix: maintained ITSM service, major updates, automation rules; restructured KB and workflows.</li>
-            <li>Key role in DUO Authentication integration across the college.</li>
-            <li>Redesigned/coded IT Help Desk website to improve accessibility and UX.</li>
-            <li>Executed TDX projects: cleaned 600+ KB articles; digitized Banner request forms for efficient administration.</li>
-            <li>Delivered training on TDX and IT tools; improved operational efficiency across user groups.</li>
-            <li>Built automated workflows for access requests and equipment reservations; enhanced client portal functionality.</li>
+            <li>Lead Admin for TeamDynamix: provided technical support for ITSM service, managed system updates, and resolved automation issues.</li>
+            <li>Key role in DUO Authentication integration across the college, providing technical support for authentication issues.</li>
+            <li>Redesigned/coded IT Help Desk website to improve accessibility and user experience for better technical support delivery.</li>
+            <li>Executed TDX projects: cleaned 600+ KB articles for better technical support; digitized Banner request forms.</li>
+            <li>Delivered training on TDX and IT tools; provided ongoing technical support and troubleshooting to improve user experience.</li>
+            <li>Built and maintained automated workflows for access requests and equipment reservations; provided technical support for client portal.</li>
           </ul>
         </div>
 
@@ -96,10 +96,10 @@ export default function ResumePDF() {
             <span className="dates">Oct 2019 – Aug 2021</span>
           </div>
           <ul>
-            <li>Technical Support and Ticket Management: Utilized ticket-tracking tools to efficiently resolve a wide range of IT-related issues, significantly enhancing user satisfaction.</li>
-            <li>Direct User Assistance: Provided hands-on support to faculty, staff, and students, addressing their specific IT needs and challenges.</li>
-            <li>Knowledge Base Contributions: Authored and published 22 knowledge base articles, providing valuable resources for user self-help and education.</li>
-            <li>Information Management: Digitized and maintained critical information, such as the compromised account list and printer data.</li>
+            <li>Technical Support and Ticket Management: Utilized ticket-tracking tools to efficiently resolve IT-related issues, enhancing user satisfaction through systematic troubleshooting.</li>
+            <li>Direct User Assistance: Provided hands-on technical support to faculty, staff, and students, addressing their specific IT needs with clear communication.</li>
+            <li>Knowledge Base Contributions: Authored and published 22 knowledge base articles, providing troubleshooting resources for user self-help.</li>
+            <li>Information Management: Digitized and maintained critical technical information, such as compromised account lists and printer data.</li>
           </ul>
         </div>
 
@@ -112,8 +112,8 @@ export default function ResumePDF() {
             <span className="dates">2016 – 2020</span>
           </div>
           <ul>
-            <li>Efficient System Management: Leveraged a ticket tracking system to meticulously monitor and manage repairs, updates, and services, ensuring timely and organized responses to technical issues.</li>
-            <li>Technical Problem-Solving: Provided essential support in troubleshooting computer systems, resolving basic technical problems and contributing to smoother system operations.</li>
+            <li>Efficient System Management: Leveraged ticket tracking system to monitor and manage repairs, updates, and services, ensuring timely responses to technical issues.</li>
+            <li>Technical Problem-Solving: Provided essential technical support in troubleshooting computer systems, resolving technical problems for smoother operations.</li>
           </ul>
         </div>
 
@@ -123,9 +123,9 @@ export default function ResumePDF() {
             <span className="dates">2016 – 2020</span>
           </div>
           <ul>
-            <li>Client Engagement and Support: Implemented and managed a ticketing system to facilitate direct and effective communication with clients, ensuring prompt resolution of inquiries and issues.</li>
-            <li>Troubleshooting and Technical Support: Provided comprehensive troubleshooting for modding services, addressing complex technical challenges and enhancing service quality.</li>
-            <li>Community Management and Leadership: Successfully led and nurtured an active community of over 150 members, fostering engagement, collaboration, and a supportive environment.</li>
+            <li>Client Engagement and Support: Implemented and managed ticketing system to facilitate direct communication with clients, ensuring prompt resolution of technical inquiries.</li>
+            <li>Troubleshooting and Technical Support: Provided comprehensive technical support for modding services, addressing complex technical challenges and enhancing service quality.</li>
+            <li>Community Management and Leadership: Successfully led and nurtured an active community of over 150 members, providing technical support and fostering engagement.</li>
           </ul>
         </div>
       </section>
@@ -136,15 +136,15 @@ export default function ResumePDF() {
         <div className="skills-grid">
           <div className="skill-category">
             <h3>Core Technologies</h3>
-            <p>TeamDynamix (TDX), Office 365, SharePoint, Active Directory, DUO MFA, Windows</p>
+            <p>TeamDynamix (TDX), Office 365, SharePoint, Active Directory, DUO MFA, Windows, Technical Support Tools</p>
           </div>
           <div className="skill-category">
             <h3>Specializations</h3>
-            <p>Workflow Automation, ITSM, PPM, iPaaS, Help Desk Management, Technical Writing, Web Development, Local SEO</p>
+            <p>Troubleshooting, Customer Support, ITSM, Help Desk Management, Technical Writing, Web Development, System Administration, Problem Solving</p>
           </div>
           <div className="skill-category">
             <h3>Experience</h3>
-            <p>Office 365 Support (3y), In‑person & Remote IT Support (3y), Communication (7y), Troubleshooting (6y)</p>
+            <p>Technical Support (5y), Customer Support (5y), Troubleshooting (6y), Communication (7y)</p>
           </div>
         </div>
       </section>
@@ -174,19 +174,19 @@ export default function ResumePDF() {
         <div className="achievements-grid">
           <div className="achievement">
             <h3>Solo Web Development Business</h3>
-            <p>Founded Websites by Tim, providing custom web solutions to RI businesses.</p>
+            <p>Founded Websites by Tim, providing custom web solutions and technical support to RI businesses.</p>
           </div>
           <div className="achievement">
-            <h3>ITSM Overhaul & KB Cleanup</h3>
-            <p>Led TDX knowledge base restructure; cleaned 600+ articles for efficiency.</p>
+            <h3>Technical Support & KB Cleanup</h3>
+            <p>Led TDX knowledge base restructure; cleaned 600+ articles for better support efficiency.</p>
           </div>
           <div className="achievement">
-            <h3>Security & MFA Rollout</h3>
-            <p>Key role in DUO authentication implementation across CCRI campus.</p>
+            <h3>Security & MFA Support</h3>
+            <p>Key role in DUO authentication implementation and support across CCRI campus.</p>
           </div>
           <div className="achievement">
-            <h3>Portal + Intake Redesign</h3>
-            <p>Redesigned IT Help Desk site and digitized Banner request forms.</p>
+            <h3>Portal + Support Redesign</h3>
+            <p>Redesigned IT Help Desk site and digitized Banner request forms for improved support delivery.</p>
           </div>
         </div>
       </section>
