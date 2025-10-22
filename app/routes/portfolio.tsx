@@ -6,17 +6,17 @@ import { usePageViewTracking } from "../hooks/useAnalytics";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Portfolio — Timothy Suwityarat Web Design Work" },
-    { name: "description", content: "Explore my web design portfolio featuring custom websites, ITSM solutions, and digital projects. See examples of my work in web development, user experience design, and technical solutions." },
-    { name: "keywords", content: "Timothy Suwityarat portfolio, web design portfolio, ITSM solutions, custom websites, Rhode Island web developer, TeamDynamix solutions" },
-    { property: "og:title", content: "Portfolio — Timothy Suwityarat Web Design Work" },
-    { property: "og:description", content: "Explore my web design portfolio featuring custom websites, ITSM solutions, and digital projects." },
+    { title: "Portfolio — Timothy Suwityarat Web Design & Technical Solutions" },
+    { name: "description", content: "Explore my portfolio featuring custom websites, technical support solutions, and digital projects. See examples of my work in web development, troubleshooting, and technical problem-solving." },
+    { name: "keywords", content: "Timothy Suwityarat portfolio, web design portfolio, technical support, custom websites, Rhode Island web developer, troubleshooting solutions" },
+    { property: "og:title", content: "Portfolio — Timothy Suwityarat Web Design & Technical Solutions" },
+    { property: "og:description", content: "Explore my portfolio featuring custom websites, technical support solutions, and digital projects." },
     { property: "og:type", content: "website" },
     { property: "og:url", content: "https://suwityarat.me/portfolio" },
     { property: "og:site_name", content: "Timothy Suwityarat" },
     { name: "twitter:card", content: "summary" },
     { name: "twitter:title", content: "Portfolio — Timothy Suwityarat" },
-    { name: "twitter:description", content: "Explore my web design portfolio featuring custom websites, ITSM solutions, and digital projects." },
+    { name: "twitter:description", content: "Explore my portfolio featuring custom websites, technical support solutions, and digital projects." },
   ];
 }
 
@@ -35,7 +35,7 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Track page view
-  usePageViewTracking("Portfolio — Timothy Suwityarat Web Design Work");
+  usePageViewTracking("Portfolio — Timothy Suwityarat Web Design & Technical Solutions");
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -68,12 +68,12 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": "Timothy Suwityarat Portfolio",
-            "description": "Web design portfolio featuring custom websites, ITSM solutions, and digital projects by Timothy Suwityarat",
+            "description": "Portfolio featuring custom websites, technical support solutions, and digital projects by Timothy Suwityarat",
             "url": "https://suwityarat.me/portfolio",
             "mainEntity": {
               "@type": "Person",
               "name": "Timothy Suwityarat",
-              "jobTitle": "Solutions Engineer",
+              "jobTitle": "Technical Support Specialist",
               "url": "https://suwityarat.me"
             },
             "about": [
@@ -83,11 +83,11 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
               },
               {
                 "@type": "Thing", 
-                "name": "ITSM Solutions"
+                "name": "Technical Support"
               },
               {
                 "@type": "Thing",
-                "name": "Workflow Automation"
+                "name": "Troubleshooting"
               }
             ]
           })
@@ -103,7 +103,7 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
             <a href="/" className="hover:opacity-70 text-left">Home</a>
             <a href="/about" className="hover:opacity-70 text-left">About</a>
             <button onClick={() => scrollToSection('web-design')} className="hover:opacity-70 text-left">Web Design</button>
-            <button onClick={() => scrollToSection('itsm-solutions')} className="hover:opacity-70 text-left">ITSM Solutions</button>
+            <button onClick={() => scrollToSection('technical-solutions')} className="hover:opacity-70 text-left">Technical Solutions</button>
             <button onClick={() => scrollToSection('contact')} className="hover:opacity-70 text-left">Contact</button>
           </nav>
           
@@ -209,7 +209,7 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
               Web Design
             </motion.button>
             <motion.button 
-              onClick={() => { closeMobileMenu(); setTimeout(() => scrollToSection('itsm-solutions'), 100); }} 
+              onClick={() => { closeMobileMenu(); setTimeout(() => scrollToSection('technical-solutions'), 100); }} 
               className="hover:opacity-70 py-2 text-left"
               variants={{
                 open: { opacity: 1, x: 0 },
@@ -218,7 +218,7 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
               whileHover={{ x: 4, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.98 }}
             >
-              ITSM Solutions
+              Technical Solutions
             </motion.button>
             <motion.button 
               onClick={() => { closeMobileMenu(); setTimeout(() => scrollToSection('contact'), 100); }} 
@@ -253,20 +253,20 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
           >
             <img 
               src="/headshot.jpg" 
-              alt="Tim, Solutions Engineer" 
+              alt="Tim, Technical Support Specialist" 
               className="w-24 h-24 md:w-32 md:h-32 rounded-xl object-top object-cover"
               loading="eager"
             />
           </motion.div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">My Portfolio</h1>
-          <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-neutral-700 mb-6">Web Design & Technical Solutions</p>
+          <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-neutral-700 mb-6">Web Design & Technical Support Solutions</p>
           <motion.p 
             className="max-w-3xl mx-auto text-base md:text-lg text-neutral-600"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
           >
-            A collection of my web design work, ITSM solutions, and technical projects. Each project represents my commitment to clean design, user experience, and practical solutions.
+            A collection of my web design work, technical support solutions, and troubleshooting projects. Each project represents my commitment to clean design, user experience, and practical problem-solving.
           </motion.p>
         </motion.div>
       </section>
@@ -428,8 +428,8 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
         </motion.div>
       </section>
 
-      {/* ITSM Solutions Section */}
-      <section id="itsm-solutions" className="mx-auto max-w-7xl px-4 py-10">
+      {/* Technical Solutions Section */}
+      <section id="technical-solutions" className="mx-auto max-w-7xl px-4 py-10">
         <motion.div 
           className="mb-8"
           initial={{ opacity: 0, y: 20 }}
@@ -437,8 +437,8 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">ITSM Solutions</h2>
-          <p className="text-base md:text-lg text-neutral-700">Technical solutions and workflow designs for IT service management and process automation.</p>
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">Technical Support Solutions</h2>
+          <p className="text-base md:text-lg text-neutral-700">Technical solutions and troubleshooting projects for IT support and customer service.</p>
         </motion.div>
 
         <motion.div 
@@ -567,7 +567,7 @@ export default function Portfolio({ loaderData }: Route.ComponentProps) {
         >
           <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">Let's Work Together</h2>
           <p className="text-base md:text-lg text-neutral-700 mb-6">
-            Interested in discussing a web design project or ITSM solution? I'd love to hear about your needs and explore how I can help bring your vision to life.
+            Interested in discussing a web design project or technical support solution? I'd love to hear about your needs and explore how I can help bring your vision to life.
           </p>
           <motion.div 
             className="grid grid-cols-1 sm:grid-cols-2 gap-4"

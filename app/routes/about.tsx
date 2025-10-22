@@ -6,17 +6,17 @@ import { usePageViewTracking } from "../hooks/useAnalytics";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "About Timothy Suwityarat — Solutions Engineer & IT Professional" },
-    { name: "description", content: "I'm Tim, a Solutions Engineer specializing in ITSM, workflow automation, and IT support. Based in Warwick, Rhode Island with extensive experience at TeamDynamix and CCRI." },
-    { name: "keywords", content: "Timothy Suwityarat, Suwityarat, Solutions Engineer, ITSM, TeamDynamix, CCRI, Rhode Island, IT Support, Workflow Automation" },
-    { property: "og:title", content: "About Timothy Suwityarat — Solutions Engineer & IT Professional" },
-    { property: "og:description", content: "I'm Tim, a Solutions Engineer specializing in ITSM, workflow automation, and IT support." },
+    { title: "About Timothy Suwityarat — Technical Support Specialist & IT Professional" },
+    { name: "description", content: "I'm Tim, a Technical Support Specialist with expertise in troubleshooting, customer support, and technical problem-solving. Based in Warwick, Rhode Island with extensive experience at TeamDynamix and CCRI." },
+    { name: "keywords", content: "Timothy Suwityarat, Suwityarat, Technical Support Specialist, troubleshooting, customer support, TeamDynamix, CCRI, Rhode Island, IT Support" },
+    { property: "og:title", content: "About Timothy Suwityarat — Technical Support Specialist & IT Professional" },
+    { property: "og:description", content: "I'm Tim, a Technical Support Specialist with expertise in troubleshooting, customer support, and technical problem-solving." },
     { property: "og:type", content: "profile" },
     { property: "og:url", content: "https://suwityarat.me/about" },
     { property: "og:site_name", content: "Timothy Suwityarat" },
     { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: "About Timothy Suwityarat — Solutions Engineer" },
-    { name: "twitter:description", content: "I'm Tim, a Solutions Engineer specializing in ITSM, workflow automation, and IT support." },
+    { name: "twitter:title", content: "About Timothy Suwityarat — Technical Support Specialist" },
+    { name: "twitter:description", content: "I'm Tim, a Technical Support Specialist with expertise in troubleshooting, customer support, and technical problem-solving." },
   ];
 }
 
@@ -35,7 +35,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Track page view
-  usePageViewTracking("About Timothy Suwityarat — Solutions Engineer & IT Professional");
+  usePageViewTracking("About Timothy Suwityarat — Technical Support Specialist & IT Professional");
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -68,8 +68,8 @@ export default function About({ loaderData }: Route.ComponentProps) {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Timothy Suwityarat",
-            "jobTitle": "Solutions Engineer",
-            "description": "I'm a Solutions Engineer specializing in ITSM, workflow automation, and IT support",
+            "jobTitle": "Technical Support Specialist",
+            "description": "I'm a Technical Support Specialist with expertise in troubleshooting, customer support, and technical problem-solving",
             "url": "https://suwityarat.me",
             "image": "https://suwityarat.me/headshot.jpg",
             "sameAs": [
@@ -92,12 +92,12 @@ export default function About({ loaderData }: Route.ComponentProps) {
               "name": "Community College of Rhode Island"
             },
             "knowsAbout": [
-              "IT Service Management",
-              "TeamDynamix",
-              "Workflow Automation",
+              "Technical Support",
+              "Troubleshooting",
+              "Customer Support",
               "Microsoft 365",
               "IT Support",
-              "Solutions Engineering"
+              "Help Desk"
             ]
           })
         }}
@@ -292,20 +292,20 @@ export default function About({ loaderData }: Route.ComponentProps) {
           >
             <img 
               src="/headshot.jpg" 
-              alt="Tim, Solutions Engineer" 
+              alt="Tim, Technical Support Specialist" 
               className="w-24 h-24 md:w-32 md:h-32 rounded-xl object-top object-cover"
               loading="eager"
             />
           </motion.div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">About Timothy Suwityarat</h1>
-          <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-neutral-700 mb-6">Solutions Engineer · ITSM Specialist · Rhode Island</p>
+          <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-neutral-700 mb-6">Technical Support Specialist · Troubleshooting Expert · Rhode Island</p>
           <motion.p 
             className="max-w-3xl mx-auto text-base md:text-lg text-neutral-600"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
           >
-            I'm Tim, a problem solver who specializes in streamlining IT operations and creating efficient workflows that make technology work better for people.
+            I'm Tim, a technical problem solver who specializes in helping customers resolve issues and get the most out of their technology through systematic troubleshooting and clear communication.
           </motion.p>
         </motion.div>
       </section>
@@ -329,7 +329,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
               After earning my Associate in Science in Computer Science from the Community College of Rhode Island, I joined CCRI's IT department. I spent over four years there developing my skills in IT service management, user support, and system administration. This experience taught me a lot about the challenges organizations face when managing technology at scale.
             </p>
             <p className="text-base md:text-lg leading-relaxed mb-4">
-              In 2024, I moved to TeamDynamix as a Solutions Engineer. Now I help organizations across different industries implement and optimize their ITSM, PPM, and iPaaS solutions. This role lets me combine my technical knowledge with my passion for helping others succeed.
+              In 2024, I moved to TeamDynamix as a Solutions Engineer, where I gained valuable experience in technical problem-solving and customer support. This role helped me develop strong skills in understanding customer needs, troubleshooting complex issues, and finding practical solutions that work.
             </p>
             <p className="text-base md:text-lg leading-relaxed mb-4">
               Beyond my corporate role, I also founded Websites by Tim, a solo web development business that serves local Rhode Island businesses. This entrepreneurial venture allows me to work directly with small business owners, creating custom websites that help them establish and grow their online presence. It's been rewarding to see how technology can make a real difference for local businesses in my community.
@@ -451,7 +451,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
               I believe technology should serve people, not the other way around. My approach to IT solutions is grounded in understanding the human side of technology and how it affects workflows, productivity, and daily operations.
             </p>
             <p className="text-base md:text-lg leading-relaxed mb-4">
-              Whether I'm designing a workflow automation, troubleshooting a system issue, or presenting a solution to stakeholders, I focus on clarity, efficiency, and user experience. The best technical solution is one that people can actually use and benefit from.
+              Whether I'm troubleshooting a system issue, helping a customer resolve a problem, or documenting solutions for future reference, I focus on clarity, efficiency, and user experience. The best technical solution is one that people can actually use and benefit from.
             </p>
             <p className="text-base md:text-lg leading-relaxed mb-4">
               I'm passionate about continuous learning and staying current with evolving technologies. The IT landscape changes rapidly, and I make it a priority to understand new tools, methodologies, and best practices that can benefit the organizations I work with.
@@ -475,7 +475,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
         >
           <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">Let's Connect</h2>
           <p className="text-base md:text-lg text-neutral-700 mb-6">
-            I'm always interested in connecting with fellow IT professionals, discussing new opportunities, or sharing insights about technology solutions. Feel free to reach out!
+            I'm always interested in connecting with fellow IT professionals, discussing new opportunities, or sharing insights about technical support and troubleshooting. Feel free to reach out!
           </p>
           <motion.div 
             className="grid grid-cols-1 sm:grid-cols-2 gap-4"

@@ -7,18 +7,18 @@ import { ContactModal } from "../components/ContactModal";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Timothy Suwityarat — Solutions Engineer | ITSM & Workflow Automation Expert" },
-    { name: "description", content: "Timothy Suwityarat is a Solutions Engineer specializing in ITSM, workflow automation, and support portal modernization. Based in Warwick, Rhode Island. View my résumé, portfolio, and contact information." },
-    { name: "keywords", content: "Timothy Suwityarat, Suwityarat, Solutions Engineer, ITSM, TeamDynamix, workflow automation, Rhode Island, IT support, CCRI, Warwick RI" },
-    { property: "og:title", content: "Timothy Suwityarat — Solutions Engineer | ITSM & Workflow Automation Expert" },
-    { property: "og:description", content: "Timothy Suwityarat is a Solutions Engineer specializing in ITSM, workflow automation, and support portal modernization. Based in Warwick, Rhode Island." },
+    { title: "Timothy Suwityarat — Technical Support Specialist | IT Problem Solver" },
+    { name: "description", content: "Timothy Suwityarat is a Technical Support Specialist with expertise in troubleshooting, customer support, and technical problem-solving. Based in Warwick, Rhode Island. View my résumé, portfolio, and contact information." },
+    { name: "keywords", content: "Timothy Suwityarat, Suwityarat, Technical Support Specialist, IT support, troubleshooting, customer support, Rhode Island, TeamDynamix, CCRI, Warwick RI" },
+    { property: "og:title", content: "Timothy Suwityarat — Technical Support Specialist | IT Problem Solver" },
+    { property: "og:description", content: "Timothy Suwityarat is a Technical Support Specialist with expertise in troubleshooting, customer support, and technical problem-solving. Based in Warwick, Rhode Island." },
     { property: "og:type", content: "profile" },
     { property: "og:url", content: "https://suwityarat.me" },
     { property: "og:site_name", content: "Timothy Suwityarat" },
     { property: "og:image", content: "https://suwityarat.me/headshot.jpg" },
     { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: "Timothy Suwityarat — Solutions Engineer" },
-    { name: "twitter:description", content: "Solutions Engineer specializing in ITSM, workflow automation, and support portal modernization." },
+    { name: "twitter:title", content: "Timothy Suwityarat — Technical Support Specialist" },
+    { name: "twitter:description", content: "Technical Support Specialist specializing in troubleshooting, customer support, and technical problem-solving." },
     { name: "twitter:image", content: "https://suwityarat.me/headshot.jpg" },
   ];
 }
@@ -40,7 +40,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   const { trackContactClick, trackDownload, trackNavigationClick } = useAnalytics();
   
   // Track page view
-  usePageViewTracking("Timothy Suwityarat — Solutions Engineer");
+  usePageViewTracking("Timothy Suwityarat — Technical Support Specialist");
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -79,8 +79,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Timothy Suwityarat",
-            "jobTitle": "Solutions Engineer",
-            "description": "Solutions Engineer specializing in ITSM, workflow automation, and support portal modernization",
+            "jobTitle": "Technical Support Specialist",
+            "description": "Technical Support Specialist with expertise in troubleshooting, customer support, and technical problem-solving",
             "url": "https://suwityarat.me",
             "image": "https://suwityarat.me/headshot.jpg",
             "sameAs": [
@@ -103,17 +103,17 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               "name": "Community College of Rhode Island"
             },
             "knowsAbout": [
-              "IT Service Management",
-              "TeamDynamix",
-              "Workflow Automation",
+              "Technical Support",
+              "Troubleshooting",
+              "Customer Support",
               "Microsoft 365",
               "IT Support",
-              "Solutions Engineering",
+              "Help Desk",
               "Web Development"
             ],
             "hasOccupation": {
               "@type": "Occupation",
-              "name": "Solutions Engineer",
+              "name": "Technical Support Specialist",
               "occupationLocation": {
                 "@type": "City",
                 "name": "Warwick, Rhode Island"
@@ -303,7 +303,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               >
                 <img 
                   src="/headshot.jpg" 
-                  alt="Tim, Solutions Engineer" 
+                  alt="Tim, Technical Support Specialist" 
                   className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-xl object-top object-cover"
                   loading="eager"
                 />
@@ -314,7 +314,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
               >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight">Timothy Suwityarat</h1>
-                <p className="mt-2 sm:mt-3 text-lg sm:text-xl md:text-2xl font-medium tracking-tight">Solutions Engineer · ITSM · Workflow Automation</p>
+                <p className="mt-2 sm:mt-3 text-lg sm:text-xl md:text-2xl font-medium tracking-tight">Technical Support Specialist · Troubleshooting · Customer Support</p>
               </motion.div>
             </div>
             <motion.p 
@@ -323,7 +323,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
             >
-              I'm a problem solver who streamlines IT service delivery for professional organizations. I modernize support portals and turn messy intake into reliable, automated workflows.
+              I'm a technical problem solver who helps customers resolve issues and get the most out of their technology. I specialize in troubleshooting, customer support, and finding practical solutions to technical challenges.
             </motion.p>
             <motion.div 
               className="mt-6 flex flex-col sm:flex-row gap-3 items-center md:items-start"
@@ -494,7 +494,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">About</h2>
           <h3 className="text-lg font-extrabold">Professional Summary</h3>
           <p className="mt-2 text-sm text-neutral-800">
-            I'm a Solutions Engineer with a proven track record at TeamDynamix and the Community College of Rhode Island. I enhance IT systems and user experiences through innovative solutions and clear communication. I'm an expert in software troubleshooting and Microsoft 365, focused on automation, knowledge management, and client satisfaction.
+            I'm a Technical Support Specialist with a proven track record at TeamDynamix and the Community College of Rhode Island. I help customers resolve technical issues and optimize their technology experience through clear communication and systematic problem-solving. I'm an expert in troubleshooting, customer support, and Microsoft 365, focused on finding practical solutions and ensuring customer satisfaction.
           </p>
           <motion.a 
             href="/about" 
