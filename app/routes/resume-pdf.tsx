@@ -38,23 +38,6 @@ export default function ResumePDF() {
         <div className="job">
           <div className="job-header">
             <div className="flex items-center gap-2">
-              <img src="/tdx.webp" alt="TeamDynamix logo" className="w-4 h-4 object-contain" />
-              <h3>Solutions Engineer — TeamDynamix</h3>
-            </div>
-            <span className="dates">Feb 2024 – Present</span>
-          </div>
-          <ul>
-            <li>Provide technical support and troubleshooting assistance to customers using TeamDynamix ITSM, PPM, and iPaaS solutions.</li>
-            <li>Participate in discovery calls to understand customer technical needs and provide solutions based on their specific challenges.</li>
-            <li>Build and maintain demo environments and technical documentation to help customers understand platform capabilities.</li>
-            <li>Provide deep technical knowledge on TeamDynamix platform, including troubleshooting ticketing systems and automation.</li>
-            <li>Create and update technical support documentation and troubleshooting guides for customer success team.</li>
-          </ul>
-        </div>
-
-        <div className="job">
-          <div className="job-header">
-            <div className="flex items-center gap-2">
               <img src="/android-chrome-512x512.png" alt="Websites by Tim logo" className="w-4 h-4 object-contain" />
               <h3>Founder — Websites by Tim</h3>
             </div>
@@ -66,6 +49,23 @@ export default function ResumePDF() {
             <li>Provide comprehensive services including single-page sites, multi-page websites, and technical troubleshooting for existing sites.</li>
             <li>Focus on client collaboration and direct communication, providing technical support and maintenance for website functionality.</li>
             <li>Implement technical solutions and performance optimization to help businesses maintain their online presence.</li>
+          </ul>
+        </div>
+
+        <div className="job">
+          <div className="job-header">
+            <div className="flex items-center gap-2">
+              <img src="/tdx.webp" alt="TeamDynamix logo" className="w-4 h-4 object-contain" />
+              <h3>Solutions Engineer — TeamDynamix</h3>
+            </div>
+            <span className="dates">Feb 2024 – Oct 2025</span>
+          </div>
+          <ul>
+            <li>Provide technical support and troubleshooting assistance to customers using TeamDynamix ITSM, PPM, and iPaaS solutions.</li>
+            <li>Participate in discovery calls to understand customer technical needs and provide solutions based on their specific challenges.</li>
+            <li>Build and maintain demo environments and technical documentation to help customers understand platform capabilities.</li>
+            <li>Provide deep technical knowledge on TeamDynamix platform, including troubleshooting ticketing systems and automation.</li>
+            <li>Create and update technical support documentation and troubleshooting guides for customer success team.</li>
           </ul>
         </div>
 

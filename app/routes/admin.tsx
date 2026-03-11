@@ -2,6 +2,7 @@ import type { Route } from "./+types/admin";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { redirect } from "react-router";
+import JobPrepAI from "~/components/JobPrepAI";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -29,16 +30,27 @@ type LoaderData = {
 // Resume data structure
 const resumeData = {
   name: "Timothy Suwityarat",
-  title: "Solutions Engineer",
+  title: "Founder",
   email: "jobs@suwityarat.com",
   phone: "+1 (401) 218-7310",
   location: "Warwick, RI",
   linkedin: "https://www.linkedin.com/in/timothy-suwityarat-1737002a0/",
   experience: [
     {
+      company: "Websites by Tim",
+      position: "Founder",
+      duration: "2024 – Present",
+      highlights: [
+        "Founded solo web development business serving Rhode Island businesses with custom website solutions and technical support",
+        "Specialize in fast-loading, mobile-responsive websites with clean design, local SEO, and client-focused delivery",
+        "Provide single-page sites, multi-page websites, makeovers, and landing pages; focus on client collaboration and direct communication",
+        "Implement technical solutions and performance optimization to help businesses maintain and grow their online presence"
+      ]
+    },
+    {
       company: "TeamDynamix",
       position: "Solutions Engineer",
-      duration: "Feb 2024 – Present",
+      duration: "Feb 2024 – Oct 2025",
       highlights: [
         "Work closely with Account Executives, Customer Success Managers, and Sales Representatives to deliver tailored demonstrations across ITSM, PPM, and iPaaS solutions",
         "Participate in discovery calls to understand prospect needs, identify technical fit, and shape demo strategy based on their goals and pain points",
@@ -98,6 +110,7 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
   const [analyticsData, setAnalyticsData] = useState<any>(null);
   const [isLoadingAnalytics, setIsLoadingAnalytics] = useState(false);
   const [isResettingAnalytics, setIsResettingAnalytics] = useState(false);
+  const [showJobPrepAI, setShowJobPrepAI] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setJobDetails(prev => ({
@@ -115,7 +128,7 @@ I'm writing to express my strong interest in the ${position} position at ${compa
 
 ${whyInterested ? `I'm particularly drawn to this role because ${whyInterested.toLowerCase()}.` : ''}
 
-In my current role as Solutions Engineer at TeamDynamix, I work closely with Account Executives and Customer Success Managers to deliver tailored demonstrations across ITSM, PPM, and iPaaS solutions. I participate in discovery calls to understand prospect needs, identify technical fit, and shape demo strategy based on their goals and pain points. This experience has honed my ability to translate complex technical concepts into clear, compelling value propositions.
+In my current role as Founder of Websites by Tim, I work with Rhode Island businesses on custom web development, local SEO, and technical support. I also bring recent experience as a Solutions Engineer at TeamDynamix, where I delivered tailored demonstrations across ITSM, PPM, and iPaaS solutions, participated in discovery calls to shape demo strategy, and translated technical concepts into clear value propositions.
 
 ${relevantExperience ? `Specifically relevant to this position, ${relevantExperience.toLowerCase()}.` : ''}
 
@@ -150,11 +163,12 @@ Dear Hiring Manager,
 
 I hope this email finds you well. I'm writing to express my interest in the ${position} position at ${company}.
 
-I'm a Solutions Engineer with extensive experience in ITSM, workflow automation, and technical support. I've attached my resume for your review and would welcome the opportunity to discuss how my skills can contribute to your team.
+I'm a Founder and web developer with experience in ITSM, workflow automation, and technical support from my work at TeamDynamix and CCRI. I've attached my resume for your review and would welcome the opportunity to discuss how my skills can contribute to your team.
 
 Key highlights of my experience:
-• Solutions Engineer at TeamDynamix (2024-Present)
-• Senior IT role at Community College of Rhode Island (2021-2024)
+• Founder, Websites by Tim (2024–Present)
+• Solutions Engineer at TeamDynamix (2024–Oct 2025)
+• Senior IT role at Community College of Rhode Island (2021–2024)
 • Expertise in TeamDynamix, Office 365, and workflow automation
 • Strong background in technical writing and process optimization
 
@@ -179,7 +193,7 @@ LinkedIn: ${resumeData.linkedin}`;
     
     const linkedinMessage = `Hi there! I noticed the ${position} position at ${company} and I'm very interested in learning more about the role. 
 
-I'm a Solutions Engineer with experience in ITSM, workflow automation, and technical support. I'd love to connect and discuss how my background might be a good fit for your team.
+I'm a Founder and web developer with experience in ITSM, workflow automation, and technical support. I'd love to connect and discuss how my background might be a good fit for your team.
 
 Would you be open to a brief conversation about the position?
 
@@ -566,7 +580,7 @@ Tim`;
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Admin Tools</h1>
-          <p className="text-neutral-700 mb-8">Generate cover letters, email templates, and LinkedIn messages for job applications.</p>
+          <p className="text-neutral-700 mb-8">Generate cover letters, email templates, and LinkedIn messages for job applications. Get AI-powered job prep assistance.</p>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Input Form */}
@@ -788,7 +802,7 @@ Tim`;
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <h2 className="text-xl font-extrabold mb-4">Quick Actions</h2>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-7">
               <button
                 onClick={() => {
                   generateCoverLetter();
@@ -831,6 +845,12 @@ Tim`;
               >
                 {showSavedApplications ? "Hide Saved" : "View Saved"}
               </button>
+              <button
+                onClick={() => setShowJobPrepAI(!showJobPrepAI)}
+                className="rounded-xl border border-purple-600 bg-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-[0_3px_0_0_#7c3aed] active:translate-y-[3px] active:shadow-none text-center"
+              >
+                {showJobPrepAI ? "Hide AI Assistant" : "Job Prep AI"}
+              </button>
               <a
                 href="/Timothy_Suwityarat_Resume.pdf"
                 download="Timothy_Suwityarat_Resume.pdf"
@@ -846,6 +866,18 @@ Tim`;
               </a>
             </div>
           </motion.div>
+
+          {/* Job Prep AI Assistant */}
+          {showJobPrepAI && (
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              <JobPrepAI jobDetails={jobDetails} />
+            </motion.div>
+          )}
 
           {/* Saved Applications Panel */}
           {showSavedApplications && (

@@ -39,8 +39,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
     trackContactClick('contact_modal_open');
   };
 
-  // Hide floating contact button on resume-pdf page
+  // Hide floating contact button on resume-pdf and admin pages
   const isResumePDF = location.pathname === '/resume-pdf';
+  const isAdminPage = location.pathname === '/admin';
 
   return (
     <html lang="en">
@@ -53,8 +54,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         
-        {/* Global Contact Button - Hidden on resume-pdf page */}
-        {!isResumePDF && (
+        {/* Global Contact Button - Hidden on resume-pdf and admin pages */}
+        {!isResumePDF && !isAdminPage && (
           <motion.button
             onClick={openContactModal}
             className="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-2xl border border-black bg-black text-white shadow-[0_4px_0_0_#000] hover:shadow-[0_6px_0_0_#000] active:translate-y-[2px] active:shadow-[0_2px_0_0_#000] transition-all duration-200 flex items-center gap-2 font-semibold text-sm"

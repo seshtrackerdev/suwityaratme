@@ -4,6 +4,11 @@
 declare namespace Cloudflare {
 	interface Env {
 		VALUE_FROM_CLOUDFLARE: "Hello from Hono/CF";
+		AI: Ai;
+		APPLICATIONS_KV: KVNamespace;
+		CONTACT_QUEUE: Queue;
+		SEND_EMAIL: EmailService;
+		ADMIN_PIN: string;
 	}
 }
 interface Env extends Cloudflare.Env {}

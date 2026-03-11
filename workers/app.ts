@@ -246,6 +246,75 @@ app.post("/api/analytics/reset", async (c) => {
   }
 });
 
+// AI Chat endpoint for job prep assistance
+app.post("/api/ai/chat", async (c) => {
+  try {
+    const { message, jobDetails } = await c.req.json();
+    
+    if (!message || typeof message !== 'string') {
+      return c.json({ error: "Message is required" }, 400);
+    }
+
+    // Check if user is authenticated as admin
+    const cookieHeader = c.req.header('Cookie');
+    if (!cookieHeader || !cookieHeader.includes('admin_authenticated=true')) {
+      return c.json({ error: "Unauthorized" }, 401);
+    }
+
+    // Build context from job details if available
+    const context = jobDetails ? `
+Current Job Context:
+- Company: ${jobDetails.company || 'Not specified'}
+- Position: ${jobDetails.position || 'Not specified'}
+- Requirements: ${jobDetails.requirements || 'Not specified'}
+- Why Interested: ${jobDetails.whyInterested || 'Not specified'}
+- Relevant Experience: ${jobDetails.relevantExperience || 'Not specified'}
+` : '';
+
+    // AI personality and instructions
+    const systemPrompt = `You are a helpful career coach and job search assistant. You're knowledgeable about:
+- Technical interviews and coding challenges
+- Behavioral interview questions (STAR method)
+- Resume optimization and ATS systems
+- Salary negotiation and market research
+- Networking and LinkedIn strategies
+- Interview follow-up best practices
+
+You provide practical, actionable advice with specific examples. You're encouraging but honest, and you help users prepare thoroughly for their job search journey.
+
+${context}
+
+User Question: ${message}
+
+Please provide a helpful, specific response that addresses their question with actionable advice.`;
+
+    // Use Cloudflare AI binding
+    const ai = c.env.AI;
+    const response = await ai.run('@cf/meta/llama-3.1-8b-instruct', {
+      messages: [
+        {
+          role: 'system',
+          content: systemPrompt
+        },
+        {
+          role: 'user',
+          content: message
+        }
+      ],
+      max_tokens: 1000,
+      temperature: 0.7
+    });
+
+    return c.json({ 
+      success: true, 
+      response: response.response 
+    });
+  } catch (error) {
+    console.error("Error processing AI chat:", error);
+    return c.json({ error: "Failed to process AI request" }, 500);
+  }
+});
+
 app.get("*", async (c) => {
   // Track page views for non-API routes (exclude admin pages)
   if (!c.req.url.includes('/api/') && !c.req.url.includes('/admin') && c.env.APPLICATIONS_KV) {

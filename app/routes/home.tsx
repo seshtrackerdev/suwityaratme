@@ -388,7 +388,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <div>
                   <p className="font-semibold">Experience</p>
                   <div className="mt-2 space-y-1">
-                    <div className="flex items-center gap-2"><img src="/tdx.webp" alt="TeamDynamix logo" className="w-5 h-5 object-contain flex-shrink-0" /><span className="whitespace-nowrap"><strong>Solutions Engineer</strong> — TDX (2024–Present)</span></div>
+                    <div className="flex items-center gap-2"><img src="/android-chrome-512x512.png" alt="Websites by Tim logo" className="w-5 h-5 object-contain flex-shrink-0" /><span className="whitespace-nowrap"><strong>Founder</strong> — Websites by Tim (2024–Present)</span></div>
+                    <div className="flex items-center gap-2"><img src="/tdx.webp" alt="TeamDynamix logo" className="w-5 h-5 object-contain flex-shrink-0" /><span className="whitespace-nowrap"><strong>Solutions Engineer</strong> — TDX (2024–Oct 2025)</span></div>
                     <div className="flex items-center gap-2"><img src="/ccri.png" alt="CCRI logo" className="w-5 h-5 object-contain flex-shrink-0" /><span><strong>Senior Info. Tech</strong> — CCRI (2021–2024)</span></div>
                   </div>
                 </div>
@@ -564,26 +565,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div className="flex items-center gap-3">
-                  <img src="/tdx.webp" alt="TeamDynamix logo" className="w-6 h-6 object-contain" />
-                  <h4 className="text-base font-extrabold">Solutions Engineer — TeamDynamix</h4>
-                </div>
-                <span className="text-xs font-semibold">Feb 2024 – Present</span>
-              </div>
-              <ul className="mt-3 space-y-2 text-sm">
-                <li>Work closely with Account Executives, Customer Success Managers, and Sales Representatives to deliver tailored demonstrations across ITSM, PPM, and iPaaS solutions.</li>
-                <li>Participate in discovery calls to understand prospect needs, identify technical fit, and shape demo strategy based on their goals and pain points.</li>
-                <li>Build customized demo environments, workflows, and outlines that reflect real-world scenarios and demonstrate how TeamDynamix can solve prospect-specific challenges.</li>
-                <li>Provide deep product knowledge on the TeamDynamix platform, including intake design, ticketing, automation, and portfolio management.</li>
-                <li>Help refine and update shared demo environments, scripts, and walkthroughs used across the pre-sales team to ensure consistency and quality.</li>
-              </ul>
-            </motion.div>
-
-            <motion.div 
-              className="rounded-3xl border border-black bg-white p-6 shadow-[0_6px_0_0_#000]"
-              whileHover={{ y: -2, transition: { duration: 0.2 } }}
-            >
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <div className="flex items-center gap-3">
                   <img src="/android-chrome-512x512.png" alt="Websites by Tim logo" className="w-6 h-6 object-contain" />
                   <h4 className="text-base font-extrabold">Founder — Websites by Tim</h4>
                 </div>
@@ -595,6 +576,26 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <li>Provide comprehensive services including single-page sites, multi-page websites, website makeovers, and landing pages for promotions.</li>
                 <li>Focus on client collaboration and direct communication, ensuring businesses maintain control over their content while I handle technical implementation.</li>
                 <li>Implement local SEO strategies and performance optimization to help businesses improve their online presence and search visibility.</li>
+              </ul>
+            </motion.div>
+
+            <motion.div 
+              className="rounded-3xl border border-black bg-white p-6 shadow-[0_6px_0_0_#000]"
+              whileHover={{ y: -2, transition: { duration: 0.2 } }}
+            >
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <div className="flex items-center gap-3">
+                  <img src="/tdx.webp" alt="TeamDynamix logo" className="w-6 h-6 object-contain" />
+                  <h4 className="text-base font-extrabold">Solutions Engineer — TeamDynamix</h4>
+                </div>
+                <span className="text-xs font-semibold">Feb 2024 – Oct 2025</span>
+              </div>
+              <ul className="mt-3 space-y-2 text-sm">
+                <li>Work closely with Account Executives, Customer Success Managers, and Sales Representatives to deliver tailored demonstrations across ITSM, PPM, and iPaaS solutions.</li>
+                <li>Participate in discovery calls to understand prospect needs, identify technical fit, and shape demo strategy based on their goals and pain points.</li>
+                <li>Build customized demo environments, workflows, and outlines that reflect real-world scenarios and demonstrate how TeamDynamix can solve prospect-specific challenges.</li>
+                <li>Provide deep product knowledge on the TeamDynamix platform, including intake design, ticketing, automation, and portfolio management.</li>
+                <li>Help refine and update shared demo environments, scripts, and walkthroughs used across the pre-sales team to ensure consistency and quality.</li>
               </ul>
             </motion.div>
 

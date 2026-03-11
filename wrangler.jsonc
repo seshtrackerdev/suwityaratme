@@ -51,6 +51,9 @@
       "destination_address": "jobs@suwityarat.com"
     }
   ],
+  "ai": {
+    "binding": "AI"
+  },
   /**
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
